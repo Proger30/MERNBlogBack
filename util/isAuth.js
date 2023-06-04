@@ -9,13 +9,11 @@ export default (req, res, next) => {
 			req.userId = decoded._id;
 			return next();
 		} catch (error) {
-			console.log(1)
 			return res.status(403).json({
 				message: 'Нет доступа'
 			});
 		}
 	} else {
-		console.log(2)
 		return res.status(403).json({
 			message: 'Нет доступа'
 		})
