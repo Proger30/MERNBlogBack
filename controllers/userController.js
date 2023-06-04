@@ -38,8 +38,6 @@ export const postAuthLogin = async (req, res) => {
 
 		
 		if (!isValidPass) {
-			console.log(req.body.password)
-			console.log(isValidPass)
 			return res.json({
 				message: 'does not logged in'
 			})
@@ -52,7 +50,6 @@ export const postAuthLogin = async (req, res) => {
 		})
 
 		const { passwordHash, ...userDoc} = user._doc
-		console.log(isValidPass)
 		return res.json({
 			...userDoc,
 			token,
@@ -67,8 +64,6 @@ export const postAuthLogin = async (req, res) => {
 
 export const postAuthRegister = async (req, res) => {
 	try {
-		console.log(req.body);
-		
 		// const token = jwt.sign({
 		// 	email: req.body.email,
 		// 	fullName: 'Вася Пупкин',
