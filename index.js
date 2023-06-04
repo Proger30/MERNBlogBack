@@ -32,7 +32,6 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 
 app.post('/upload', isAuth, upload.single('image'), (req, res) => {
-	console.log(req.file)
 	res.json({
 		url: `/uploads/${req.file.originalname}`,
 	});
