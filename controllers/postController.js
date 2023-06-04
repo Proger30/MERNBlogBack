@@ -23,9 +23,7 @@ export const getAll = async (req, res) => {
 	try {
 		
 		const userId = req.query.userId ? new mongoose.Types.ObjectId(jwt.verify(req.query.userId, 'secret123')._id) : null;
-		console.log(userId)
 		const allPosts = await PostModel.find(req.query.userPost==='true' ? {user: userId} : null ).exec();
-		console.log(allPosts)
 		return res.json(allPosts);
 	} catch (err) {
 		console.log(err);
@@ -67,7 +65,6 @@ export const getOne = async (req, res) => {
 
 export const remove = async (req, res) => {
 	try {
-		console.log(req.params.id);
 		PostModel.findOneAndDelete({_id: req.params.id, user: req.userId})
 			.then( doc => {
 				if (!doc) {
@@ -94,7 +91,6 @@ export const remove = async (req, res) => {
 
 export const create = async (req, res) => {
 	try {
-		console.log(req.userId);
 		const doc = new PostModel({
 			title: req.body.title,
 			text: req.body.text,
@@ -114,7 +110,6 @@ export const create = async (req, res) => {
 
 export const update = async (req, res) => {
 	try {
-		console.log(req.params.id);
 		const userId = jwt.verify(req.body.token, 'secret123')._id;
 		await PostModel.updateOne({_id: req.params.id, user: userId}, {
 			title: req.body.title,
